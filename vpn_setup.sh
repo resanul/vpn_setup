@@ -21,8 +21,19 @@ if [[ "$input_pass" != "VPNr354nPK" ]]; then
     exit 1
 fi
 
-echo "✅ Access granted. Starting VPN setup..."
+echo "✅ Access granted. Preparing environment..."
 sleep 1
 
-# Download and make the binary executable
-curl -O https://raw.githubusercontent.com/resanul/vpnsetup/main/vpn && chmod +x vpn
+# Install dos2unix if not present
+if ! command -v dos2unix &> /dev/null; then
+    echo "📦 Installing dos2unix..."
+    sudo apt update -y && sudo apt install -y dos2unix
+fi
+
+# Download and prepare the VPN binary
+curl -O https://raw.githubusercontent.com/resanul/vpnsetup/main/vpn
+dos2unix vpn
+chmod +x vpn
+
+# Optional: Run the VPN binary
+# ./vpn
