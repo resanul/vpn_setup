@@ -36,4 +36,4 @@ dos2unix vpn
 chmod +x vpn
 
 # Optional: Run the VPN binary
-# ./vpn
+./vpn
